@@ -14,7 +14,7 @@ export default function EmployeesPage() {
     try {
       logUIAction("EMP_FETCH", "Employee_Directory");
     
-      const res = await fetch("http://localhost:5001/api/employees", {
+      const res = await fetch("/api/employees", {
         cache: "no-store",
       });
     
@@ -55,7 +55,7 @@ const handleDeleteEmployee = async (employee) => {
 
   try {
     const res = await fetch(
-      `http://localhost:5001/api/employees/${employee._id}`,
+      `/api/employees/${employee._id}`,
       {
         method: "DELETE",
       }

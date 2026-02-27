@@ -29,7 +29,7 @@ export default function LeavePage() {
   //////////////////////////////////////////////////
 
   const fetchEmployees = async () => {
-    const res = await fetch("http://localhost:5001/api/employees");
+    const res = await fetch("/api/employees");
     const data = await res.json();
     if (data.success) setEmployees(data.items);
   };
@@ -39,7 +39,7 @@ export default function LeavePage() {
   //////////////////////////////////////////////////
 
   const fetchLeaves = async () => {
-    const res = await fetch("http://localhost:5001/api/leaves");
+    const res = await fetch("/api/leaves");
     const data = await res.json();
     if (data.success) setLeaves(data.items || []);
   };
@@ -80,11 +80,11 @@ export default function LeavePage() {
         messageType,
       }
     );
-    let url = "http://localhost:5001/api/leaves";
+    let url = "/api/leaves";
     let method = "POST";
 
     if (editingId) {
-      url = `http://localhost:5001/api/leaves/${editingId}`;
+      url = `/api/leaves/${editingId}`;
       method = "PUT";
     }
 
@@ -136,7 +136,7 @@ export default function LeavePage() {
       to: leave?.to,
     });
 
-    await fetch(`http://localhost:5001/api/leaves/${id}`, {
+    await fetch(`/api/leaves/${id}`, {
       method: "DELETE"
     });
 
