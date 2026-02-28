@@ -29,7 +29,7 @@ export default function LeavePage() {
   //////////////////////////////////////////////////
 
   const fetchEmployees = async () => {
-    const res = await fetch("/employees");
+    const res = await fetch(`${API_BASE_URL}/api/employees`);
     const data = await res.json();
     if (data.success) setEmployees(data.items);
   };
@@ -38,18 +38,49 @@ export default function LeavePage() {
   // FETCH LEAVES
   //////////////////////////////////////////////////
 
-  const fetchLeaves = async () => {
-    const res = await fetch(`${API_BASE_URL}/api/leaves`);
-    const data = await res.json();
-    if (data.success) setLeaves(data.items || []);
-  };
+  // const fetchLeaves = async () => {
+  //   const res = a  wait fetch(`${API_BASE_URL}/api/leaves`);
+  //   const data = await res.json();
+  //   if (data.success) setLeaves(data.items || []);
+  // };
 
-  useEffect(() => {
-    trackPage("/admin/leave", "auto");
-    logUIAction("LEAVE_PAGE_OPEN", "Leave_Management");
-    fetchEmployees();
-    fetchLeaves();
-  }, []);
+  // useEffect(() => {
+  //   trackPage("/admin/leave", "auto");
+  //   logUIAction("LEAVE_PAGE_OPEN", "Leave_Management");
+  //   fetchEmployees();
+  //   fetchLeaves();
+  // }, []);
+
+  const fetchLeaves = async () => {
+  try {
+    const url = `${API_BASE_URL}/api/leaves`;
+    console.log("Fetching leaves from:", url);
+
+    const res = await fetch(url, {
+      credentials: "include", // if using cookies
+      headers: {
+        "Content-Type": "application/json",
+        // Uncomment below if using JWT
+        // Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    });
+
+    if (!res.ok) {
+      console.error("HTTP Error:", res.status);
+      return;
+    }
+
+    const data = await res.json();
+
+    if (data.success) {
+      setLeaves(data.items || []);
+    } else {
+      console.error("API returned failure:", data);
+    }
+  } catch (error) {
+    console.error("Fetch error:", error);
+  }
+};
 
   //////////////////////////////////////////////////
   // SUBMIT
