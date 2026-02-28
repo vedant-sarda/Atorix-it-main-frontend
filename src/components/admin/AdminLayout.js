@@ -62,7 +62,7 @@ export default function AdminLayout({ children, title, description }) {
 </div>
 
     {/* ================= CONTENT ================= */}
-<div className="relative z-10 flex w-full font-['Times_New_Roman',serif]">
+<div className="relative z-10 flex flex-col lg:flex-row w-full font-['Times_New_Roman',serif]">
 
   {/* Sidebar */}
   <div className="w-64 shrink-0">
@@ -73,11 +73,11 @@ export default function AdminLayout({ children, title, description }) {
   <div className="flex-1 flex flex-col min-h-screen">
 
     {/* Header */}
-    <header className="border-b border-gray-200 bg-white/60 backdrop-blur-sm">
-      <div className="max-w-6xl mx-auto w-full px-6 py-4">
-        <h1 className="text-xl md:text-2xl font-semibold text-gray-900">
-          {title}
-        </h1>
+    <header className="border-b border-gray-200 /70 backdrop-blur-md ml-12">
+            <div className="px-4 sm:px-6 md:px-8 py-4">
+              <h1 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900">
+                {title}
+              </h1>
 
         {description && (
           <p className="text-sm text-gray-600 mt-1">
