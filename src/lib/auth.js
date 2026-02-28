@@ -199,7 +199,7 @@ export async function login(username, password, isBlogLogin = false) {
 export async function logout() {
   try {
     // Call the logout API endpoint
-    await fetch('/api/auth/logout', {
+    await fetch(`${API_BASE_URL}/api/auth/logout`, {
       method: 'POST',
       credentials: 'include', // Important for including cookies
       headers: {

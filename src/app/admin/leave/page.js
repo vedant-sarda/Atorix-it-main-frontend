@@ -29,7 +29,7 @@ export default function LeavePage() {
   //////////////////////////////////////////////////
 
   const fetchEmployees = async () => {
-    const res = await fetch("/api/employees");
+    const res = await fetch("/employees");
     const data = await res.json();
     if (data.success) setEmployees(data.items);
   };
@@ -39,7 +39,7 @@ export default function LeavePage() {
   //////////////////////////////////////////////////
 
   const fetchLeaves = async () => {
-    const res = await fetch("/api/leaves");
+    const res = await fetch(`${API_BASE_URL}/api/leaves`);
     const data = await res.json();
     if (data.success) setLeaves(data.items || []);
   };
