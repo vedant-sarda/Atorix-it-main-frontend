@@ -109,6 +109,7 @@ export async function validateCredentials(username, password) {
 export function setAuthToken(token, user = null) {
   if (typeof window !== 'undefined') {
     localStorage.setItem('atorix_auth_token', token);
+    sessionStorage.setItem('atorix_auth_token', token);
     if (user) {
       localStorage.setItem('atorix_user', JSON.stringify(user));
     }
